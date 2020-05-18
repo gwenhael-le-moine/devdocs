@@ -19,11 +19,24 @@ module Docs
         HTML
       else
         <<-HTML
-          &copy; 2012&ndash;2019 Manas Technology Solutions.<br>
+          &copy; 2012&ndash;2020 Manas Technology Solutions.<br>
           Licensed under the Apache License, Version 2.0.
         HTML
       end
     }
+
+    version '0.34' do
+      self.release = '0.34.0'
+      self.root_path = "api/#{release}/index.html"
+
+      options[:only_patterns] = [/\Adocs\//, /\Aapi\/#{release}\//]
+      options[:skip_patterns] = [/debug/i]
+
+      options[:replace_paths] = {
+        "api/#{release}/" => "api/#{release}/index.html",
+        'docs/' => 'docs/index.html'
+      }
+    end
 
     version '0.31' do
       self.release = '0.31.1'
